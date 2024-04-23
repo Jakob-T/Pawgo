@@ -1,0 +1,17 @@
+#dashboard_div{
+    border: 2px solid #becad3;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    background-color: #f4fafa;
+    margin-left: 400px;
+    margin-right: 400px;
+}
+#dashboard_input{
+    text-align: center;
+
+}
+#job_card{
+    margin-bottom: 15px;
+}

@@ -1,0 +1,8 @@
+# Create a new file: admin/base_site.html {% extends 'admin/base.html' %} {%
+block sidebar %}
+<!-- Custom navigation item -->
+<div class="model-sidebar">
+  <h2>TopUps (N/M)</h2>
+  <!-- Add any additional navigation or links here if needed -->
+</div>
+{{ block.super }} {% endblock %}

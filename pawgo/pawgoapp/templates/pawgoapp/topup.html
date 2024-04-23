@@ -1,0 +1,24 @@
+{% extends 'pawgoapp/base.html' %} {% block content %}
+
+<div class="container mt-4">
+  <h2>Uplati bonom</h2>
+  {% for message in messages %}
+  <div class="alert alert-danger" role="alert">{{ message }}</div>
+  {% endfor %}
+  <form method="POST" action="{% url 'topup' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="dispute-title" class="form-label">Upišite kod:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="dispute-title"
+        name="code"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Priloži</button>
+  </form>
+</div>
+
+{% endblock content %}

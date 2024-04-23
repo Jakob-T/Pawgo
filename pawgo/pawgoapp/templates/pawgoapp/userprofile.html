@@ -1,0 +1,69 @@
+{% extends 'pawgoapp/base.html' %}
+
+{% block content %}
+<div id="dashboard_div">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstname">Ime</label>
+            <input type="text" class="form-control" id="dashboard_input" name="first_name" value="{{ user.first_name }}" readonly >
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastname">Prezime</label>
+            <input type="text" class="form-control" id="dashboard_input" name="last_name" value="{{ user.last_name }}" readonly >
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="username">Korisničko ime</label>
+            <input type="text" class="form-control" id="dashboard_input" name="username" value="{{ user.username }}" readonly >
+          </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="dashboard_input" name="email" value="{{ user.email }}" readonly >
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="telephone_number">Broj mobitela</label>
+            <input type="tel" class="form-control" id="dashboard_input" name="phone_number" value="{{ user.phone_number }}" readonly >
+          </div>
+          <div class="form-group col-md-2">
+            {% if request.user.username == user.username %}
+            <label for="token_balance">Stanje</label>
+            <input type="number" class="form-control" id="dashboard_input" name="token_balance"  placeholder="{{ user.token_balance }}" readonly>
+            {% endif %}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check"  id="dashboard_input">
+            <label class="form-check-label" >Šetač:</label>
+            {% if user.is_walker %}
+              <label class="form-check-label" >Da</label>
+            {% else %}
+              <label class="form-check-label">Ne</label>
+            {% endif %}
+          </div>
+        </div>
+</div>
+<div class="row d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-0 border" style="background-color: #f0f2f5;">
+      <div class="card-body p-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <p>Type your note, and hit enter to add it</p>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex flex-row align-items-center">
+                <p class="small mb-0 ms-2">Martha</p>
+              </div>
+              <div class="d-flex flex-row align-items-center">
+                <p class="small text-muted mb-0">Upvote?</p>
+                <i class="far fa-thumbs-up mx-2 fa-xs text-black" style="margin-top: -0.16rem;"></i>
+                <p class="small text-muted mb-0">3</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

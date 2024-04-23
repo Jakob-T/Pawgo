@@ -1,0 +1,89 @@
+{% extends 'pawgoapp/base.html' %}
+{% block content %}
+    
+  <div class="container">
+        <div class="row mx-0 justify-content-center">
+          <div class="col-md-7 col-lg-5 px-lg-2 col-xl-4 px-xl-0 px-xxl-3">
+            <form method="POST" class="w-100 rounded-1 p-4 border bg-white" action="{% url 'jobs:new_job' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <label class="d-block mb-4">
+                <span class="form-label d-block">Naslov posla</span>
+                <input
+                  required
+                  name="title"
+                  type="text"
+                  class="form-control"
+                />
+              </label>
+      
+              <label class="d-block mb-4">
+                <span class="form-label d-block">Vrsta psa</span>
+                <input
+                  required
+                  name="dog_breed"
+                  type="text"
+                  class="form-control"
+                  placeholder="npr. Hrvatski ovčar"
+                />
+              </label>
+      
+              <label class="d-block mb-4">
+                <span class="form-label d-block">Trajanje šetnje(u satima)</span>
+                <select required name="duration" class="form-select">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                </select>
+              </label>
+      
+              <label class="d-block mb-4">
+                <span class="form-label d-block">Lokacija (Molimo vas da upišete u formatu: Grad, Kvart)</span>
+                <input
+                  required
+                  name="location"
+                  type="text"
+                  class="form-control"
+                  placeholder="npr. Osijek, Tenja"
+                />
+              </label>
+
+              <label class="d-block mb-4">
+                <span class="form-label d-block">Budžet</span>
+                <input
+                  required
+                  name="budget"
+                  type="number"
+                  class="form-control"
+                  placeholder="u eurima"
+                />
+              </label>
+
+              <label class="d-block mb-4">
+                <span class="form-label d-block">Napišite kratki opis posla(detalji, želje...)</span>
+                <textarea
+                  required
+                  name="description"
+                  class="form-control"
+                  rows="3"
+                ></textarea>
+              </label>
+
+              <div class="mb-3">
+                <button type="submit" class="btn btn-primary px-3 rounded-3">
+                  Priloži
+                </button>
+              </div>
+      
+            </form>
+          </div>
+        </div>
+      </div>
+      {% if error_message %}
+        <div class="alert alert-danger" role="alert">
+          {{ error_message }}
+        </div>
+      {% endif %}
+{% endblock content %}

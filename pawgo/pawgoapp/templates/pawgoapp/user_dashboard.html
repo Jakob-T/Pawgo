@@ -1,0 +1,88 @@
+{% extends 'pawgoapp/base.html' %}
+
+{% block content %}
+<div id="dashboard_div">
+    <form method="POST" action="{% url 'dashboard' %}">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="firstname">Ime</label>
+            <input type="text" class="form-control" id="dashboard_input" name="first_name" value="{{ user.first_name }}">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="lastname">Prezime</label>
+            <input type="text" class="form-control" id="dashboard_input" name="last_name" value="{{ user.last_name }}">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="username">Korisničko ime</label>
+            <input type="text" class="form-control" id="dashboard_input" name="username" value="{{ user.username }}">
+          </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="dashboard_input" name="email" value="{{ user.email }}">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="phone_number">Broj mobitela</label>
+            <input type="tel" class="form-control" id="dashboard_input" name="phone_number" value="{{ user.phone_number }}">
+        </div>
+          <div class="form-group col-md-2">
+            <label for="token_balance">Stanje</label>
+            <input type="number" class="form-control" id="dashboard_input" name="token_balance"  placeholder="{{ user.token_balance }}" readonly>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="is_walker" name="is_walker" {% if user.is_walker %}checked{% endif %}>
+            <label class="form-check-label" for="is_walker">
+              Šetač
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Spremi promjene</button>
+      </form>
+</div>
+
+<div class="container mt-3">
+    <h2>Poslovi koje ste prihvatili</h2>
+    {% for job in accepted_jobs %}
+    <div class="card" id="job_card">
+      <div class="card-body">
+        <h4 class="card-title">{{ job.title }}</h4>
+        <p class="homepar">{{ job.location }}</p>
+        <p class="homepar">{{ job.budget }}/h</p>
+        <a href="{% url 'jobs:job_detail' job.id %}" class="card-link">Detalji</a>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="container mt-3">
+    <h2>Objavljeni poslovi</h2>
+    {% for job in posted_jobs %}
+    <div class="card" id="job_card">
+      <div class="card-body">
+        <h4 class="card-title">{{ job.title }}</h4>
+        <p class="homepar">{{ job.location }}</p>
+        <p class="homepar">{{ job.budget }}/h</p>
+        <a href="{% url 'jobs:job_detail' job.id %}" class="card-link">Detalji</a>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="container mt-3">
+    <h2>Izvršeni poslovi</h2>
+    {% for job in finished_jobs %}
+    <div class="card" id="job_card">
+      <div class="card-body">
+        <h4 class="card-title">{{ job.title }}</h4>
+        <p class="homepar">{{ job.location }}</p>
+        <p class="homepar">{{ job.budget }}/h</p>
+        <a href="{% url 'jobs:job_detail' job.id %}" class="card-link">Detalji</a>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

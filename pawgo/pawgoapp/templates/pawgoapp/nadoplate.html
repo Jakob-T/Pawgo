@@ -1,0 +1,18 @@
+{% extends 'pawgoapp/base.html' %} {% block content %}
+
+<div class="container mt-3">
+  <h2>Lista nadoplata</h2>
+  <div class="card" id="job_card"></div>
+  {% for nadoplata in nadoplate %} {% if nadoplata.isused %}
+  
+    <div class="card" id="job_card">
+      <div class="card-body">
+        <h4 class="card-title">{{ nadoplata.code }}</h4>
+        <p class="homepar">{{ nadoplata.value }}</p>
+        <p class="homepar">{{ nadoplata.expiration_date }}</p>
+      </div>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+  {% endblock content %}
+</div>
